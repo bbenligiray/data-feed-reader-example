@@ -1,11 +1,11 @@
 const hre = require('hardhat');
-const dapiServerDeploymentOnPolygonTestnet = require('@api3/operations/chain/deployments/polygon-testnet/DapiServer.json');
+const dapiServerDeploymentOnAvalancheTestnet = require('@api3/operations/chain/deployments/avalanche-testnet/DapiServer.json');
 
 async function main() {
   const voidSignerAddressZero = new hre.ethers.VoidSigner(hre.ethers.constants.AddressZero, hre.ethers.provider);
   const dapiServer = new hre.ethers.Contract(
-    dapiServerDeploymentOnPolygonTestnet.address,
-    dapiServerDeploymentOnPolygonTestnet.abi,
+    dapiServerDeploymentOnAvalancheTestnet.address,
+    dapiServerDeploymentOnAvalancheTestnet.abi,
     voidSignerAddressZero
   );
   const dapiName = process.env.DAPI_NAME;

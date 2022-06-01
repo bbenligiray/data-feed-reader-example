@@ -16,54 +16,6 @@ describe('DataFeedReaderExample', function () {
     dataFeedReaderExample = await dataFeedReaderExampleFactory.deploy(mockDapiServer.address);
   });
 
-  describe('readDataFeedWithId', function () {
-    context('DataFeedReaderExample is allowed to read', function () {
-      it('reads data feed with ID', async function () {
-        const dataFeedId = '0x1234567890123456789012345678901234567890123456789012345678901234';
-        const dataFeedValue = 123456;
-        const dataFeedTimestamp = (await hre.ethers.provider.getBlock()).timestamp;
-        await mockDapiServer.mockDataFeed(dataFeedId, dataFeedValue, dataFeedTimestamp);
-        const dataFeed = await dataFeedReaderExample.readDataFeedWithId(dataFeedId);
-        expect(dataFeed.value).to.equal(dataFeedValue);
-        expect(dataFeed.timestamp).to.equal(dataFeedTimestamp);
-      });
-    });
-    context('DataFeedReaderExample is not allowed to read', function () {
-      it('reverts', async function () {
-        const dataFeedId = '0x1234567890123456789012345678901234567890123456789012345678901234';
-        const dataFeedValue = 123456;
-        const dataFeedTimestamp = (await hre.ethers.provider.getBlock()).timestamp;
-        await mockDapiServer.mockDataFeed(dataFeedId, dataFeedValue, dataFeedTimestamp);
-        await mockDapiServer.mockIfAllowedToRead(false);
-        await expect(dataFeedReaderExample.readDataFeedWithId(dataFeedId)).to.be.revertedWith('Sender cannot read');
-      });
-    });
-  });
-
-  describe('readDataFeedValueWithId', function () {
-    context('DataFeedReaderExample is allowed to read', function () {
-      it('reads data feed value with ID', async function () {
-        const dataFeedId = '0x1234567890123456789012345678901234567890123456789012345678901234';
-        const dataFeedValue = 123456;
-        const dataFeedTimestamp = (await hre.ethers.provider.getBlock()).timestamp;
-        await mockDapiServer.mockDataFeed(dataFeedId, dataFeedValue, dataFeedTimestamp);
-        expect(await dataFeedReaderExample.readDataFeedValueWithId(dataFeedId)).to.equal(dataFeedValue);
-      });
-    });
-    context('DataFeedReaderExample is not allowed to read', function () {
-      it('reverts', async function () {
-        const dataFeedId = '0x1234567890123456789012345678901234567890123456789012345678901234';
-        const dataFeedValue = 123456;
-        const dataFeedTimestamp = (await hre.ethers.provider.getBlock()).timestamp;
-        await mockDapiServer.mockDataFeed(dataFeedId, dataFeedValue, dataFeedTimestamp);
-        await mockDapiServer.mockIfAllowedToRead(false);
-        await expect(dataFeedReaderExample.readDataFeedValueWithId(dataFeedId)).to.be.revertedWith(
-          'Sender cannot read'
-        );
-      });
-    });
-  });
-
   describe('readDataFeedWithDapiName', function () {
     context('DataFeedReaderExample is allowed to read', function () {
       it('reads data feed with ID', async function () {

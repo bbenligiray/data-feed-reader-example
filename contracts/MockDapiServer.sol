@@ -39,29 +39,6 @@ contract MockDapiServer {
         allowedToRead = _allowedToRead;
     }
 
-    // Reads a data feed using the data feed ID
-    function readDataFeedWithId(bytes32 dataFeedId)
-        external
-        view
-        returns (int224 value, uint32 timestamp)
-    {
-        require(allowedToRead, "Sender cannot read");
-        DataFeed storage dataFeed = dataFeeds[dataFeedId];
-        return (dataFeed.value, dataFeed.timestamp);
-    }
-
-    // Reads a data feed using the data feed ID. Omits the timestamp.
-    function readDataFeedValueWithId(bytes32 dataFeedId)
-        external
-        view
-        returns (int224 value)
-    {
-        require(allowedToRead, "Sender cannot read");
-        DataFeed storage dataFeed = dataFeeds[dataFeedId];
-        require(dataFeed.timestamp != 0, "Data feed does not exist");
-        return dataFeed.value;
-    }
-
     // Reads a data feed using the dAPI name that is mapped to a data feed
     function readDataFeedWithDapiName(bytes32 dapiName)
         external

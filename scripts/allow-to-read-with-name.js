@@ -2,13 +2,13 @@ const hre = require('hardhat');
 
 async function main() {
   const DataFeedReaderExample = await hre.deployments.get('DataFeedReaderExample');
-  const selfServeDapiServerWhitelisterAddressOnAvalancheTestnet = '0xc8f78DA6022572643c09DE0D02e0542C0653F88F';
+  const selfServeDapiServerWhitelisterAddressOnMilkomedaTestnet = 'xxx';
   const selfServeDapiServerWhitelisterAbi = [
     'function allowToReadDataFeedWithIdFor30Days(bytes32 dataFeedId, address reader) public',
     'function allowToReadDataFeedWithDapiNameFor30Days(bytes32 dapiName, address reader) external',
   ];
   const selfServeDapiServerWhitelister = new hre.ethers.Contract(
-    selfServeDapiServerWhitelisterAddressOnAvalancheTestnet,
+    selfServeDapiServerWhitelisterAddressOnMilkomedaTestnet,
     selfServeDapiServerWhitelisterAbi,
     (await hre.ethers.getSigners())[0]
   );

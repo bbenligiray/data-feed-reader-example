@@ -1,6 +1,6 @@
 # API3 data feed reader example
 
-> An example project for reading API3 data feeds on Avalanche testnet
+> An example project for reading API3 data feeds on Milkomeda testnet
 
 API3 serves three kinds of data feeds:
 
@@ -16,18 +16,14 @@ In this repo, we inherit the DapiReader contract to implement an example data fe
 
 Anyone can read an API3 data feed with an off-chain, static call. However, only contracts allowed by an authorized
 account are allowed to read on-chain. For production use-cases on mainnet, you will need to pay for contract read
-access. On Avalanche testnet, there is a contract that you can call to allow your contract to do on-chain calls for free
+access. On Milkomeda testnet, there is a contract that you can call to allow your contract to do on-chain calls for free
 for testing purposes, which we use in this repo.
 
 ## dAPI names
 
-dAPIs are read using their names. Here is the list of dAPI names you can use on Avalanche testnet
+dAPIs are read using their names. Here is the list of dAPI names you can use on Milkomeda testnet
 
-- `Bitcoin Index` (EOD)
-- `Ethereum Index` (EOD)
-- `BTC/USD`
-- `SOL/USD`
-- `AVAX/USD`
+- `ADA/USD`
 
 While using the scripts, you will need to specify the dAPI names as the environment variable `DAPI_NAME`.
 
@@ -53,12 +49,12 @@ Use the script below to read the data feeds off-chain. You need to do the static
 see the script for details.
 
 ```sh
-DAPI_NAME="AVAX/USD" yarn run:off-chain-read-with-name
+DAPI_NAME="ADA/USD" yarn run:off-chain-read-with-name
 ```
 
 ## Deploying DataFeedReaderExample
 
-- Get testnet AVAX from the [faucet](https://faucet.avax.network/)
+- [Get testnet MilkADA](https://occamx.gitbook.io/occamx-faq/milkomeda-testnet-guide)
 
 - Deploy DataFeedReaderExample
 
@@ -69,22 +65,22 @@ yarn deploy
 ## Reading dAPIs with name using DataFeedReaderExample
 
 First send a transaction to allow the deployed DataFeedReaderExample contract to read the dAPI. Note that you only need
-to do this once, and you can only do this on Avalanche testnet.
+to do this once, and you can only do this on Milkomeda testnet.
 
 ```sh
-DAPI_NAME="AVAX/USD" yarn run:allow-to-read-with-name
+DAPI_NAME="ADA/USD" yarn run:allow-to-read-with-name
 ```
 
 Then you can use the script below to have the DataFeedReaderExample contract read the dAPI.
 
 ```sh
-DAPI_NAME="AVAX/USD" yarn run:read-with-name
+DAPI_NAME="ADA/USD" yarn run:read-with-name
 ```
 
 You can also omit reading the timestamp and only get the value.
 
 ```sh
-DAPI_NAME="AVAX/USD" yarn run:read-value-with-name
+DAPI_NAME="ADA/USD" yarn run:read-value-with-name
 ```
 
 ## Local development and testing

@@ -2,7 +2,7 @@ const hre = require('hardhat');
 
 async function main() {
   const DataFeedReaderExample = await hre.deployments.get('DataFeedReaderExample');
-  const selfServeDapiServerWhitelisterAddressOnMilkomedaTestnet = 'xxx';
+  const selfServeDapiServerWhitelisterAddressOnMilkomedaTestnet = '0x8F3A2508C45a58d4fBAd5Ce564899659626D41B6';
   const selfServeDapiServerWhitelisterAbi = [
     'function allowToReadDataFeedWithIdFor30Days(bytes32 dataFeedId, address reader) public',
     'function allowToReadDataFeedWithDapiNameFor30Days(bytes32 dapiName, address reader) external',

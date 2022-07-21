@@ -25,6 +25,10 @@ dAPIs are read using their names. Here is the list of dAPI names you can use on 
 
 - `Bitcoin Index` (EOD)
 - `Ethereum Index` (EOD)
+- `BATCH04`
+- `BATCP04`
+- `CNCAD00`
+- `ACRCA00`
 - `BTC/USD`
 - `SOL/USD`
 - `AVAX/USD`
